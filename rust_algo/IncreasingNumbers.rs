@@ -10,32 +10,9 @@ fn get_input() -> String {
     buffer
 }
 
-fn get_int() -> i64 {
-    let mut buffer = String::new();
-
-    io::stdin().read_line(&mut buffer).unwrap();
-
-    let n: i64 = buffer.trim().parse::<i64>();
-    n
-} 
-
-fn get_usize() -> usize {
-    let mut buffer = String::new();
-
-    io::stdin().read_line(&mut buffer).unwrap();
-    
-    let n: usize = buffer.trim().parse::<usize>();
-    n
-}
-//esimerkki
-let mut buffer = String::new();
-let mut stdin = io::stdin();
-stdin.read_to_string(&mut buffer).ok();
-let mut words = buffer.as_str().split_ascii_whitespace();
-
 fn main(){
     
-    let n = get_usize();
+    let n = get_input().trim().parse::<usize>().unwrap();
 
     if n == 1 {
         println!("{}",0);
@@ -43,22 +20,29 @@ fn main(){
     }
 
     let mut vec: Vec<i64> = Vec::new();
-
-    for _ in 1..n {
-        
-        let val = get_int();
-        vec.push(val);
+    
+    let mut buffer = String::new();
+    let stdin = io::stdin();
+    
+    stdin.read_line(&mut buffer).ok();
+    
+    let mut words = buffer.split_whitespace();
+    
+    
+    for _ in 0..n {
+        vec.push(words.next().unwrap().trim().parse::<i64>().unwrap());
         
     }
     
     let mut c: i64 = 0;
    
+    
+    let vecmut = &mut vec[..];
     for i in 1..n {
         
-        while vec[i] < vec[i-1] {
-            let mut _ve = vec[i];
-            _ve += 1;
-            c +=1;
+        while vecmut[i] < vecmut[i-1] {
+            c += vecmut[i-1] - vecmut[i];
+            vecmut[i] = vecmut[i-1];
         }
     }
 
