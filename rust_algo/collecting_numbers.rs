@@ -19,9 +19,8 @@ fn main() {
     for i in 1..=n {
         vecmut[i] = nums.next().unwrap().trim().parse::<usize>().unwrap();
         posmut[vecmut[i]] = i;
-       
+        
     }
-
 
     let mut r = 1;
     for i in 1..=n {
@@ -31,7 +30,11 @@ fn main() {
         }
     }
     println!("{}",r);
+}
 
-
+fn update(mut arr: Vec<u32>){
+    for i in 0..5 {
+        arr[i] = 0;
+    }
 }
 
