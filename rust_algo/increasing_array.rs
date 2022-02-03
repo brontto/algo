@@ -31,20 +31,20 @@ fn main(){
     
     for _ in 0..n {
         vec.push(words.next().unwrap().trim().parse::<i64>().unwrap());
-        
     }
     
-    let mut c: i64 = 0;
-   
-    
-    let vecmut = &mut vec[..];
-    for i in 1..n {
-        
-        while vecmut[i] < vecmut[i-1] {
-            c += vecmut[i-1] - vecmut[i];
-            vecmut[i] = vecmut[i-1];
-        }
-    }
+    let c = how_much_increasing(&mut vec);
 
     println!("{}",c);
+}
+
+fn how_much_increasing(vec: &mut Vec<i64>) -> i64 {
+    let mut c: i64 = 0;
+    for i in 1..vec.len() {
+        while vec[i] < vec[i-1] {
+            c += vec[i-1] - vec[i];
+            vec[i] = vec[i-1];
+        }
+    }
+    c
 }

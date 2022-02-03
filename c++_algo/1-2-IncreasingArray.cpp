@@ -11,7 +11,6 @@ int main (){
     int x; 
     for (int i = 0; i < n; i++)
     {
-        
         cin >> x;
         t.push_back(x);
     }
